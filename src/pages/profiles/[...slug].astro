@@ -22,7 +22,7 @@ const { Content } = await entry.render();
 
 <p>Name: {entry.data.name}</p>
 <p>Title: {entry.data.title}</p>
-<p>Tags: {entry.data.tags.map((tag) => {tag})}</p>
+<p>Tags: {entry.data.tags.map((tag: String) => {tag})}</p>
 
 
 <Content />
