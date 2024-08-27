@@ -1,0 +1,28 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+interface Props {
+	entry: CollectionEntry<'profiles'>;
+}
+
+// This is a dynamic route that generates a page for every Markdown file in src/content/
+// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
+// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
+export async function getStaticPaths() {
+	const profiles = await getCollection('profiles');
+	return profiles.map((entry: any) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<p>Name: {entry.data.name}</p>
+<p>Title: {entry.data.title}</p>
+<p>Tags: {entry.data.tags.map((tag) => {tag})}</p>
+
+
+<Content />

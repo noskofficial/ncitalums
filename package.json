@@ -13,5 +13,6 @@
     "astro": "^4.14.5",
     "@astrojs/check": "^0.9.3",
     "typescript": "^5.5.4"
-  }
+  },
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
