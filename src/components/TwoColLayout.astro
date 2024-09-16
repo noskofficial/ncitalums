@@ -1,0 +1,13 @@
+---
+import LeftSidebar from './LeftSidebar.astro';
+import MainContent from './MainContent.astro';
+
+const { children } = Astro.props;
+---
+
+<div class="flex h-screen">
+  <LeftSidebar />
+  <MainContent>
+    {children}
+  </MainContent>
+</div>

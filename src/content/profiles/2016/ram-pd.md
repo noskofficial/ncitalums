@@ -1,9 +1,11 @@
 ---
 name: Ram Prasad
 title: Sr. Manager @ ABC Corp
-faculty: Electronics & Communications Engineering
-img: /assets/ram-pd.jpg
-img_alt: Ram Pd's profile picture
+faculty: ELX
+batch: '2016'
+image:
+  url: /assets/images/ram-prasad.jpg
+  alt: Ram Prasad
 tags:
   - Leader
   - Thinker

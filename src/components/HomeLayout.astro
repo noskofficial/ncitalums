@@ -1,0 +1,13 @@
+---
+import TopNavigation from './TopNavigation.astro';
+import MainContent from './MainContent.astro';
+
+const { children } = Astro.props;
+---
+
+<div class="flex h-screen">
+  <TopNavigation />
+  <MainContent>
+    {children}
+  </MainContent>
+</div>

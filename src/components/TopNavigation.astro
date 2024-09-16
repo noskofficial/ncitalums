@@ -1,0 +1,23 @@
+---
+const startYear = 2000;
+const currentYear = (new Date()).getFullYear();
+const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
+---
+
+<nav class="w-64 bg-gray-200 p-4">
+  <ul>
+    {yearsRange.map((year) => (
+        <li>
+          <a href={`/profiles/${year}`}>{year}</a>
+        </li>
+    ))}
+  </ul>
+  
+  <ul>
+    <li><a href="/profiles/it">IT</a></li>
+    <li><a href="/profiles/elx">ELX</a></li>
+    <li><a href="/profiles/cmp">COMP</a></li>
+    <li><a href="/profiles/se">SE</a></li>
+    <li><a href="/profiles/civil">CIVIL</a></li>
+  </ul>
+</nav>

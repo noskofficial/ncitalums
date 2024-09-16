@@ -1,0 +1,30 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+// This is a dynamic route that generates a page for every Markdown file in src/content/
+// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
+// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
+export async function getStaticPaths() {
+  const startYear = 2000;
+  const currentYear = (new Date()).getFullYear();
+  const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
+  const profiles = await getCollection('profiles');
+
+  return yearsRange.map(year => ({ 
+        params: { 
+        year
+        },
+        props: {
+            profiles: profiles.filter((profile) => profile.data.batch === year.toString())
+        }
+    }));
+}
+const { year } = Astro.params;
+const { profiles } = Astro.props;
+---
+
+Showing from {year}
+
+{profiles.map((profile) => (
+  <li><a href={`/profiles/${profile.slug}`}>{profile.data.name}</a></li>
+))}
