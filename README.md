@@ -2,6 +2,13 @@
 Welcome to NCIT Alumni Portal.
 
 ## Contributing
+
+### Hacktoberfest Participation
+
+This project is also open for **[Hacktoberfest](https://hacktoberfest.com/)** contributions! Please follow the [`CONTRIBUTING.md`](CONTRIBUTING.md) file for more information on how to contribute and be part of Hacktoberfest.
+
+As an open source community, we welcome contributions from everyone!
+
 ### Request for a Profile (Non-Developers)
 1. Please fill and submit this form.
 2. Someone from core team will review and create the profile for you.
