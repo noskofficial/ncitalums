@@ -1,0 +1,30 @@
+menu:
+  title: NCIT Alumns
+  main:
+    - title: Home
+      link: #
+    - title: Alumni Directory
+      subMenu:
+        - category: Graduation Yearss
+          inRange: true
+          rangeStart: 2000
+          rangeEnd: 2024 #default to current year
+          link: /profiles/{range}
+        - category: Departments
+          items:
+            - SE
+            - IT
+            - ELX
+            - COM
+            - CIVIL
+            - BCA
+            - BBA
+          link: /profiles/{item} 
+    - title: Events
+      link: /events
+    - title: Blog
+      link: /blog
+    - title: About
+      link: /about
+    - title: Contact Us
+      link: /contact

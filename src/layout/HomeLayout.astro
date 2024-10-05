@@ -1,0 +1,21 @@
+---
+import TopNavigation from "../components/shared/TopNavigation.astro"
+import HeroSection from '../components/homepage/HeroSection.astro';
+import ProfileHighlight from '../components/homepage/ProfileHighlight.astro';
+import BlogHighlight from '../components/homepage/BlogHighlight.astro';
+import JoinCTA from '../components/homepage/JoinCTA.astro';
+import Footer from '../components/shared/Footer.astro';
+
+
+const { children } = Astro.props;
+---
+
+<div class="flex h-screen">
+  <TopNavigation />
+  <HeroSection />
+  <ProfileHighlight />
+  <BlogHighlight />
+  <JoinCTA />
+  <Footer />
+
+</div>
