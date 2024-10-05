@@ -1,5 +1,5 @@
 ---
-import { loadConfig } from '../../utils/loadconfig.js';
+import { loadConfig } from '../../utils/loadconfig';
 
 const config = loadConfig();
 const menu = config.menu;
@@ -15,7 +15,7 @@ const menu = config.menu;
     </button>
   </div>
 
-  <ul id="navLinks" class="flex flex-col md:flex-row md:justify-center md:flex-1 md:space-x-6 mt-2 md:mt-0">
+  <ul id="navLinks" class="flex flex-col md:flex-row md:justify-center md:items-center md:flex-1 md:space-x-6 mt-2 md:mt-0">
     {menu.main.map(item => (
       <li class="relative">
         {item.subMenu ? (
@@ -31,9 +31,9 @@ const menu = config.menu;
                         {subItem.inRange ? (
                           <nav class="w-64">
                             <ul class="grid grid-cols-2 gap-2">
-                              {Array.from({ length: (subItem.rangeEnd ?? new Date().getFullYear()) - subItem.rangeStart + 1 }, (_, i) => subItem.rangeStart + i).map(range => (
-                                <li key={range}>
-                                  <a href={subItem.link.replace('{range}', range)} class="text-gray-700 hover:text-blue-600">{range}</a>
+                              {Array.from({ length: (subItem.rangeEnd ?? new Date().getFullYear()) - subItem.rangeStart! + 1 }, (_, i) => subItem.rangeStart! + i).map(range => (
+                                <li>
+                                  <a href={subItem.link.replace('{range}', `${range}`)} class="text-gray-700 hover:text-blue-600">{range}</a>
                                 </li>
                               ))}
                             </ul>
@@ -41,7 +41,7 @@ const menu = config.menu;
                         ) : (
                           <ul>
                             {subItem.items && subItem.items.map(department => (
-                              <li key={department}>
+                              <li>
                                 <a href={subItem.link.replace('{item}', department)} class="text-gray-700 hover:text-blue-600">{department}</a>
                               </li>
                             ))}
@@ -51,7 +51,7 @@ const menu = config.menu;
                     ) : (
                       <ul>
                         {subItem.items && subItem.items.map(department => (
-                          <li key={department}>
+                          <li>
                             <a href={subItem.link.replace('{item}', department)} class="text-gray-700 hover:text-blue-600">{department}</a>
                           </li>
                         ))}
@@ -71,7 +71,7 @@ const menu = config.menu;
 
   <div class="flex items-center mt-2 md:mt-0 md:ml-auto">
     <div class="relative flex-1">
-      <input type="text" placeholder="Search..." class="border rounded-md p-2 w-full focus:outline-none focus:ring focus:border-blue-300" />
+      <input type="text" placeholder="Search..."class="border rounded-md p-2 w-full focus:outline-none focus:ring focus:border-blue-300" />
       <button class="absolute right-0 top-0 mt-2 mr-2">
         <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h-1l-4-4H7a5 5 0 100 10h10a5 5 0 000-10H15l4 4"></path>
@@ -82,11 +82,11 @@ const menu = config.menu;
   </div>
 </nav>
 
-<script client:load>
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  const directoryToggle = document.getElementById('directoryToggle');
-  const megaMenu = document.getElementById('megaMenu');
+<script>
+  const menuToggle = document.getElementById('menuToggle')!;
+  const navLinks = document.getElementById('navLinks')!;
+  const directoryToggle = document.getElementById('directoryToggle')!;
+  const megaMenu = document.getElementById('megaMenu')!;
 
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('hidden');
