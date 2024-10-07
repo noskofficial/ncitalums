@@ -1,0 +1,99 @@
+---
+const alumni = [
+  {
+    name: "Satya Raj Awasthi",
+    department: "BE Software",
+    class: 2021,
+    tags: ["Backend", "Open Source Contributor", "Entrepreneur"],
+    history: [
+      { year: "2020-2022", position: "Senior Developer", company: "ABC Corp" },
+      { year: "2018-2020", position: "Software Engineer", company: "XYZ Ltd" },
+      { year: "2016-2018", position: "Junior Developer", company: "LMN Tech" },
+    ],
+    img: "https://satyarajawasthi.com.np/resources/imgs/profile-avatar-round.png",
+  },
+  {
+    name: "Satya Raj Awasthi",
+    department: "BE Software",
+    class: 2021,
+    tags: ["Backend", "Open Source Contributor", "Entrepreneur"],
+    history: [
+      { year: "2020-2022", position: "Senior Developer", company: "ABC Corp" },
+      { year: "2018-2020", position: "Software Engineer", company: "XYZ Ltd" },
+      { year: "2016-2018", position: "Junior Developer", company: "LMN Tech" },
+    ],
+    img: "https://satyarajawasthi.com.np/resources/imgs/profile-avatar-round.png",
+  },
+  {
+    name: "Satya Raj Awasthi",
+    department: "BE Software",
+    class: 2021,
+    tags: ["Backend", "Open Source Contributor", "Entrepreneur"],
+    history: [
+      { year: "2020-2022", position: "Senior Developer", company: "ABC Corp" },
+      { year: "2018-2020", position: "Software Engineer", company: "XYZ Ltd" },
+      { year: "2016-2018", position: "Junior Developer", company: "LMN Tech" },
+    ],
+    img: "https://satyarajawasthi.com.np/resources/imgs/profile-avatar-round.png",
+  },
+  {
+    name: "Satya Raj Awasthi",
+    department: "BE Software",
+    class: 2021,
+    tags: ["Backend", "Open Source Contributor", "Entrepreneur"],
+    history: [
+      { year: "2020-2022", position: "Senior Developer", company: "ABC Corp" },
+      { year: "2018-2020", position: "Software Engineer", company: "XYZ Ltd" },
+      { year: "2016-2018", position: "Junior Developer", company: "LMN Tech" },
+    ],
+    img: "https://satyarajawasthi.com.np/resources/imgs/profile-avatar-round.png",
+  }
+  ];
+---
+
+<section class="w-full py-16 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold">Meet Our Alumni</h2>
+      </div>
+      
+      {alumni.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {alumni.slice(0, 3).map((alum) => (
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+              <img src={alum.img} alt={`Profile picture of ${alum.name}`} class="w-full h-48 object-cover rounded-t-lg" />
+              <div class="pt-4 text-center">
+                <h3 class="text-xl font-semibold">{alum.name}</h3>
+                <span class="text-sm">{alum.department}, Class of {alum.class}</span>
+                <div class="flex space-x-2 mt-4">
+                  {alum.tags.map((tag) => (
+                    <span class="bg-blue-200 text-blue-800 text-xs font-semibold px-2 py-1 rounded">{tag}</span>
+                  ))}
+                </div>
+                <div class="mt-4">
+                  <ul class="text-sm">
+                    {alum.history.map((item) => (
+                      <li><strong>{item.year}:</strong> {item.position} at {item.company}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="mt-6 text-center">
+                  <a href="/profiles/" class="text-blue-500 hover:underline">See More</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center text-gray-400">
+          <p>No alumni profiles available at this time. Please check back later!</p>
+        </div>
+      )}
+  
+      <div class="text-center mt-12">
+        <a href="/profiles" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-full">
+          View All Alumni
+        </a>
+      </div>
+    </div>
+  </section>
