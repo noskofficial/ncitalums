@@ -28,3 +28,11 @@ menu:
       link: /about
     - title: Contact Us
       link: /contact
+
+featured:
+  profiles: 
+  -  "2005/nitesh-rijal"
+  -  "2016/mukhez"
+  -  "2021/satyarajawasth1" # slug
+  blogs:
+  -  "2017/ncit-alumni-reflections"

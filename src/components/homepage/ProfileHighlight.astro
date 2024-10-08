@@ -1,0 +1,91 @@
+---
+import { loadConfig } from "../../utils/loadconfig";
+import { getFeaturedProfiles } from "../../utils/loadconfig";
+
+const config = loadConfig();
+const featuredProfilePaths = config.featured.profiles;
+const featuredProfiles = await getFeaturedProfiles(featuredProfilePaths);
+---
+
+<section class="w-full py-16 bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold">Meet Our Alumni</h2>
+    </div>
+
+    {
+      Array.isArray(featuredProfiles) && featuredProfiles.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredProfiles.slice(0, 3).map((alumn) => {
+            const { name, program, batch, image, slogan, tags, history } =
+              alumn.data;
+            return (
+              <div class="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                {image?.url ? (
+                  <img
+                    src={image.url}
+                    alt={`Profile picture of ${name}`}
+                    class="w-full h-48 object-cover rounded-t-lg"
+                  />
+                ) : (
+                  <div class="w-full h-48 bg-gray-700 rounded-t-lg flex items-center justify-center">
+                    <span class="text-gray-400">No Image Available</span>
+                  </div>
+                )}
+                <div class="pt-4 text-center">
+                  <h3 class="text-xl font-semibold">{name}</h3>
+                  <span class="text-sm">
+                    {program}, Class of {batch}
+                  </span>
+                  {slogan && <p class="text-gray-400 italic">{slogan}</p>}
+                  <div class="flex space-x-2 mt-4 ">
+                    {tags.map((tag, index) => (
+                      <span
+                        style={{ marginRight: "0.5rem", marginLeft: "0.5rem" }}
+                        class="bg-blue-200 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div class="mt-4 text-left">
+                    <ul class="text-sm">
+                      {history.map((item, index) => (
+                        <li>
+                          <strong>{item.year}:</strong> {item.position} at{" "}
+                          {item.company}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="mt-6 text-center">
+                    <a
+                      href={`/profiles/${alumn.slug}`}
+                      class="text-blue-500 hover:underline"
+                    >
+                      See More
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="text-center text-gray-400">
+          <p>
+            No alumni profiles available at this time. Please check back later!
+          </p>
+        </div>
+      )
+    }
+
+    <div class="text-center mt-12">
+      <a
+        href="/profiles"
+        class="border border-green-500 hover:bg-green-500 text-white py-3 px-6 transition-all duration-300"
+      >
+        View All Alumni
+      </a>
+    </div>
+  </div>
+</section>
