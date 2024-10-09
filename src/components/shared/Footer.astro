@@ -1,0 +1,24 @@
+---
+import { loadConfig } from '../../utils/loadconfig';
+
+const config = loadConfig();
+const footer = config.footer;
+---
+
+<footer class="bg-gray-800 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <p class="text-center md:text-left"> {footer.tagline} </p>
+        </div>
+        <div class="flex space-x-4">
+          {footer.items.map(item => (
+            <a href={item.link} class="text-gray-400 hover:text-white text-sm">
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </footer>
+  

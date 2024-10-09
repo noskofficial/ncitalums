@@ -29,6 +29,16 @@ menu:
     - title: Contact Us
       link: /contact
 
+footer:
+  tagline: Open Alumn Portal - An alumni portal connecting NCIT Alumns maintained by NOSK and contributors.
+  items:
+  - title: About
+    link: #
+  - title: GitHub
+    link: https://github.com/noskofficial/ncitalums
+  - title: Contribute Now
+    link: https://github.com/noskofficial/ncitalums/blob/develop/CONTRIBUTING.md
+
 featured:
   profiles: 
   -  "2005/nitesh-rijal"
