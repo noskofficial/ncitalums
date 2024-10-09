@@ -6,11 +6,17 @@ import { getCollection } from 'astro:content';
 export interface Root {
   menu: Menu
   featured: FeaturedDetails
+  footer: Footer
 }
 
 export interface Menu {
   title: string
   main: Main[]
+}
+
+interface Footer {
+  tagline: string
+  items: Main[]
 }
 
 export interface Main {
