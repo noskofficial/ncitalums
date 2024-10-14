@@ -33,22 +33,24 @@ const sortedYears = Array.from(batchMap.keys()).sort();
 ---
 
 <TwoColLayout>
-  {sortedYears.map((year) => {
-    let showAll = false;
+  <section class="bg-gray-900 text-white p-4 sm:p-6 lg:p-8">
+    {sortedYears.map((year) => {
+      let showAll = false;
 
-    return (
-      <div class="mb-8">
-        <h3 class="text-lg font-bold flex items-center justify-between">
-          {year} Batch
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 text-white">
-          {(showAll ? batchMap.get(year) : batchMap.get(year).slice(0, 3))
-            .map((profile) => (
-              <ProfileCard key={profile.slug} slug={profile.slug} {...profile.data} />
-            ))}
+      return (
+        <div class="mb-8">
+          <h3 class="text-lg sm:text-xl lg:text-2xl font-bold flex items-center justify-between">
+            {year} Batch
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {(showAll ? batchMap.get(year) : batchMap.get(year).slice(0, 3))
+              .map((profile) => (
+                <ProfileCard slug={profile.slug} {...profile.data} />
+              ))}
+          </div>
         </div>
-      </div>
-    );
-  })}
+      );
+    })}
+  </section>
 </TwoColLayout>
 

@@ -4,20 +4,91 @@ const currentYear = (new Date()).getFullYear();
 const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
 ---
 
-<nav class="w-64 bg-gray-200 p-4">
-  <ul>
+<nav id="sidebar" class="w-64 bg-gray-800 text-white p-4 fixed inset-y-0 left-0 transform transition-transform duration-200 ease-in-out -translate-x-full sm:translate-x-0 sm:relative z-30 overflow-y-auto h-full">
+  <div class="flex justify-between items-center mb-4">
+    <span class="text-lg font-bold">Menu</span>
+    <button id="closeBtn" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <ul class="space-y-2">
     {yearsRange.map((year) => (
-        <li>
-          <a href={`/profiles/${year}`}>{year}</a>
-        </li>
+      <li>
+        <a href={`/profiles/${year}`} class="block p-2 hover:bg-gray-700 rounded transition">
+          {year}
+        </a>
+      </li>
     ))}
   </ul>
-  <hr />
-  <ul>
-    <li><a href="/profiles/it">IT</a></li>
-    <li><a href="/profiles/elx">ELX</a></li>
-    <li><a href="/profiles/cmp">COMP</a></li>
-    <li><a href="/profiles/se">SE</a></li>
-    <li><a href="/profiles/civil">CIVIL</a></li>
+  
+  <hr class="my-4 border-gray-600" />
+  
+  <ul class="space-y-2">
+    <li><a href="/profiles/it" class="block p-2 hover:bg-gray-700 rounded transition">IT</a></li>
+    <li><a href="/profiles/elx" class="block p-2 hover:bg-gray-700 rounded transition">ELX</a></li>
+    <li><a href="/profiles/cmp" class="block p-2 hover:bg-gray-700 rounded transition">COMP</a></li>
+    <li><a href="/profiles/se" class="block p-2 hover:bg-gray-700 rounded transition">SE</a></li>
+    <li><a href="/profiles/civil" class="block p-2 hover:bg-gray-700 rounded transition">CIVIL</a></li>
   </ul>
 </nav>
+
+<div id="backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden"></div>
+
+<button id="toggleBtn" class="sm:hidden text-white fixed top-4 left-4 z-40">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+  </svg>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('backdrop');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    function toggleSidebar() {
+      console.log("opening sidebar")
+      const isHidden = sidebar.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden', isHidden);
+      if (!isHidden) {
+        document.body.style.overflow = 'hidden'; // Disable scrolling
+      } else {
+        document.body.style.overflow = ''; // Enable scrolling
+      }
+    }
+
+    function closeSidebar() {
+      console.log("closing sidebar")
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+      document.body.style.overflow = ''; // Enable scrolling
+    }
+
+    toggleBtn.addEventListener('click', toggleSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    backdrop.addEventListener('click', closeSidebar);
+  });
+</script>
+
+
+<style>
+@media (min-width: 640px) {
+  #sidebar {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 639px) {
+  #sidebar {
+    transform: -translateX(-100%);
+  }
+}
+
+#backdrop {
+  transition: opacity 0.3s ease;
+}
+</style>
