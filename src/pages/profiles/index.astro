@@ -1,8 +1,54 @@
 ---
+import { getCollection } from "astro:content";
 import TwoColLayout from "../../layout/TwoColLayout.astro";
+import ProfileCard from '../../layout/AlumniCardLayout.astro';
 
+const allProfiles = await getCollection('profiles');
+
+// A map to hold data in map with year/batch as key and set of profiles in alphabetical order as value
+const batchMap = allProfiles.reduce((map, profile) => {
+  const batch = profile.data.batch;
+
+  if (!map.has(batch)) {
+    map.set(batch, new Set());
+  }
+
+  map.get(batch).add(profile);
+
+  return map;
+}, new Map());
+
+// Convert each set to an array and sort by name
+for (const [batch, profilesSet] of batchMap.entries()) {
+  const profilesArray = Array.from(profilesSet);
+  
+  profilesArray.sort((a, b) => a.data.name.localeCompare(b.data.name));
+  
+  // Replace the set with the sorted array in the map
+  batchMap.set(batch, profilesArray);
+}
+
+// Create an array of sorted years/batches
+const sortedYears = Array.from(batchMap.keys()).sort();
 ---
 
 <TwoColLayout>
-  Featured Profiles go here
+  {sortedYears.map((year) => {
+    let showAll = false;
+
+    return (
+      <div class="mb-8">
+        <h3 class="text-lg font-bold flex items-center justify-between">
+          {year} Batch
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 text-white">
+          {(showAll ? batchMap.get(year) : batchMap.get(year).slice(0, 3))
+            .map((profile) => (
+              <ProfileCard key={profile.slug} slug={profile.slug} {...profile.data} />
+            ))}
+        </div>
+      </div>
+    );
+  })}
 </TwoColLayout>
+

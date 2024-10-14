@@ -8,6 +8,6 @@ const { children } = Astro.props;
 <div class="flex h-screen">
   <LeftSidebar />
   <MainContent>
-    {children}
+    <slot/>
   </MainContent>
 </div>

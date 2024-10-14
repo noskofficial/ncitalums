@@ -3,7 +3,7 @@ name: Satya Raj Awasthi
 program: BE Software
 batch: '2021'
 image:
-  url: https://satyarajawasthi.com.np/resources/imgs/profile-avatar-round.png
+  url: https://avatars.githubusercontent.com/u/77236280
   alt: Satya Raj Awasthi
 tags:
   - Backend
