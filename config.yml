@@ -2,7 +2,7 @@ menu:
   title: NCIT Alumns
   main:
     - title: Home
-      link: #
+      link: /
     - title: Alumni Directory
       subMenu:
         - category: Graduation Yearss

@@ -4,7 +4,7 @@ const currentYear = (new Date()).getFullYear();
 const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
 ---
 
-<nav id="sidebar" class="w-64 bg-gray-800 text-white p-4 fixed inset-y-0 left-0 transform transition-transform duration-200 ease-in-out -translate-x-full sm:translate-x-0 sm:relative z-30 overflow-y-auto h-full">
+<nav id="sidebar" class="w-64 bg-gray-800 text-white p-4 fixed inset-y-0 left-0 transform transition-transform duration-200 ease-in-out -translate-x-full sm:translate-x-0 sm:relative z-30 overflow-y-auto h-screen scrollbar">
   <div class="flex justify-between items-center mb-4">
     <span class="text-lg font-bold">Menu</span>
     <button id="closeBtn" class="text-white">
