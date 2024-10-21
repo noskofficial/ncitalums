@@ -5,17 +5,17 @@ const config = loadConfig();
 const menu = config.menu;
 ---
 
-<nav class="flex flex-col md:flex-row bg-gray-800 text-white p-4 w-full fixed z-10">
-  <div class="flex items-center justify-between md:w-1/3">
+<nav class="flex flex-col lg:flex-row bg-gray-800 text-white p-4 w-full fixed z-10">
+  <div class="flex items-center justify-between xl:w-1/3">
     <div class="text-lg font-bold">{menu.title}</div>
-    <button id="menuToggle" aria-expanded="false" class="md:hidden">
+    <button id="menuToggle" aria-expanded="false" class="lg:hidden">
       <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
       </svg>
     </button>
   </div>
 
-  <ul id="navLinks" class="flex flex-col md:flex-row md:justify-center md:items-center md:flex-1 md:space-x-6 mt-2 md:mt-0">
+  <ul id="navLinks" class="flex flex-col lg:flex-row lg:justify-center lg:items-center lg:flex-1 lg:space-x-6 mt-2 lg:mt-0">
     {menu.main.map(item => (
       <li class="relative">
         {item.subMenu ? (
@@ -69,9 +69,9 @@ const menu = config.menu;
     ))}
   </ul>
 
-  <div class="flex items-center mt-2 md:mt-0 md:ml-auto">
+  <div class="flex items-center mt-2 lg:mt-0 lg:ml-auto">
     <div class="relative flex-1">
-      <input type="text" placeholder="Search..."class="border rounded-md p-2 w-full focus:outline-none focus:ring focus:border-blue-300" />
+      <input type="text" placeholder="Search..."class="border text-black rounded-md p-2 w-full focus:outline-none focus:ring focus:border-blue-300" />
       <button class="absolute right-0 top-0 mt-2 mr-2">
         <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h-1l-4-4H7a5 5 0 100 10h10a5 5 0 000-10H15l4 4"></path>
