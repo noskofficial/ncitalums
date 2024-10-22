@@ -1,30 +1,78 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from "astro:content";
+import ProfileCard from "../../layout/AlumniCardLayout.astro";
+import TwoColLayout from "../../layout/TwoColLayout.astro";
 
 // This is a dynamic route that generates a page for every Markdown file in src/content/
 // Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
 // https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
   const startYear = 2000;
-  const currentYear = (new Date()).getFullYear();
-  const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
-  const profiles = await getCollection('profiles');
+  const currentYear = new Date().getFullYear();
+  const yearsRange = Array.from(
+    { length: currentYear - startYear + 1 },
+    (_, i) => startYear + i,
+  );
+  const profiles = await getCollection("profiles");
 
-  return yearsRange.map(year => ({ 
-        params: { 
-        year
-        },
-        props: {
-            profiles: profiles.filter((profile) => profile.data.batch === year.toString())
-        }
-    }));
+  return yearsRange.map((year) => ({
+    params: {
+      year,
+    },
+    props: {
+      profiles: profiles.filter(
+        (profile) => profile.data.batch === year.toString(),
+      ),
+    },
+  }));
 }
+
 const { year } = Astro.params;
 const { profiles } = Astro.props;
 ---
 
-Showing from {year}
+<TwoColLayout>
+  <section
+    class="bg-gray-900 text-white h-screen p-4 sm:p-6 lg:p-8 overflow-y-auto"
+  >
+    <h2 class="text-2xl font-bold mb-4">Profiles from {year} Batch</h2>
 
-{profiles.map((profile) => (
-  <li><a href={`/profiles/${profile.slug}`}>{profile.data.name}</a></li>
-))}
+    {
+      profiles.length === 0 ? (
+        <div class="text-center">
+          <p class="text-lg mb-2">No profiles to show.</p>
+          <p class="text-lg mb-4">
+            Do you want to add your or someone else's profile here?
+          </p>
+          <a
+            href="/add-profile"
+            class="mt-4 inline-block border border-green-500 hover:bg-green-500 text-white py-3 px-6 transition-all duration-300 rounded"
+          >
+            Add Now
+          </a>
+        </div>
+      ) : (
+        <div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+            {profiles.map((profile) => (
+              <ProfileCard
+                slug={profile.slug}
+                {...profile.data}
+                loading="lazy"
+              />
+            ))}
+          </div>
+          <p class="mt-4 text-center text-lg">
+            Don’t see the profile you were looking for?
+            <a
+              href="/add-profile"
+              class="mt-4 inline-block border border-green-500 hover:bg-green-500 text-white py-2 px-4 transition-all duration-300 rounded"
+            >
+              Add Here
+            </a>
+          </p>
+        </div>
+      )
+    }
+  </section>
+</TwoColLayout>
