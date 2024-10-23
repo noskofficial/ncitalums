@@ -50,27 +50,46 @@ const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) =>
     const toggleBtn = document.getElementById('toggleBtn');
     const closeBtn = document.getElementById('closeBtn');
 
+    function updateCloseBtnVisibility() {
+    if (screen.width > 1080) {
+      if (closeBtn) closeBtn.classList.add('hidden');
+    } else {
+      if (closeBtn) closeBtn.classList.remove('hidden');
+    }
+  }
+
+  // Initial check
+  updateCloseBtnVisibility();
+
+  // Add resize event listener
+  window.addEventListener('resize', updateCloseBtnVisibility);
+ 
+  
     function toggleSidebar() {
       console.log("opening sidebar")
-      const isHidden = sidebar.classList.toggle('-translate-x-full');
-      backdrop.classList.toggle('hidden', isHidden);
-      if (!isHidden) {
-        document.body.style.overflow = 'hidden'; // Disable scrolling
-      } else {
-        document.body.style.overflow = ''; // Enable scrolling
+      if (sidebar) {
+        const isHidden = sidebar.classList.toggle('-translate-x-full');
+        if (backdrop) {
+          backdrop.classList.toggle('hidden', isHidden);
+        }
+        if (!isHidden) {
+          document.body.style.overflow = 'hidden'; // Disable scrolling
+        } else {
+          document.body.style.overflow = ''; // Enable scrolling
+        }
       }
     }
 
     function closeSidebar() {
       console.log("closing sidebar")
-      sidebar.classList.add('-translate-x-full');
-      backdrop.classList.add('hidden');
+      if (sidebar) sidebar.classList.add('-translate-x-full');
+      if (backdrop) backdrop.classList.add('hidden');
       document.body.style.overflow = ''; // Enable scrolling
     }
 
-    toggleBtn.addEventListener('click', toggleSidebar);
-    closeBtn.addEventListener('click', closeSidebar);
-    backdrop.addEventListener('click', closeSidebar);
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
   });
 </script>
 
