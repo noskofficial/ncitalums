@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import TwoColLayout from "../../layout/TwoColLayout.astro";
 import ProfileCard from "../../layout/AlumniCardLayout.astro";
 
-const allProfiles = await getCollection("profiles");
+import type { CollectionEntry } from "astro:content";
+
+const allProfiles: CollectionEntry<"profiles">[] = await getCollection("profiles");
 
 // A map to hold data in map with year/batch as key and set of profiles in alphabetical order as value
 const batchMap = allProfiles.reduce((map, profile) => {
@@ -21,8 +23,9 @@ const batchMap = allProfiles.reduce((map, profile) => {
 // Convert each set to an array and sort by name
 for (const [batch, profilesSet] of batchMap.entries()) {
   const profilesArray = Array.from(profilesSet);
+  profilesArray.sort((a: CollectionEntry<"profiles">, b: CollectionEntry<"profiles">) => a.data.name.localeCompare(b.data.name));
 
-  profilesArray.sort((a, b) => a.data.name.localeCompare(b.data.name));
+  profilesArray.sort((a: CollectionEntry<"profiles">, b: CollectionEntry<"profiles">) => a.data.name.localeCompare(b.data.name));
 
   // Replace the set with the sorted array in the map
   batchMap.set(batch, profilesArray);
@@ -62,7 +65,7 @@ const sortedYears = Array.from(batchMap.keys()).sort();
         href="/"
         class="border border-blue-500 hover:bg-blue-500 text-white py-3 px-6 transition-all duration-300"
       >
-        Get Back to Home
+       Home
       </a>
     </div>
   </section>

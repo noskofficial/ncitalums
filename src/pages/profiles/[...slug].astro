@@ -96,10 +96,12 @@ const similarProfiles = allProfiles.filter((p) => p.slug !== entry.slug).slice(0
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {similarProfiles.map((profile) => (
         <div class="p-4 bg-gray-700 rounded-lg shadow-md flex flex-col items-center">
-          <img src={profile.data.image.url} alt={profile.data.image.alt} class="w-24 h-24 rounded-full mb-2" />
+          <a href={`/profiles/${profile.slug}`} style="cursor: pointer;" target="_blank" class="flex flex-col gap-1 w-full items-center justify-center">
+          <img src={profile.data.image.url} alt={profile.data.image.alt} class="w-24 h-24 rounded-full" />
           <h3 class="font-bold text-center text-white">{profile.data.name}</h3>
           <p class="text-gray-300">{profile.data.program} ({profile.data.batch})</p>
           <a href={`/profiles/${profile.slug}`} class="text-blue-400 mt-2">View Profile</a>
+      </a>
         </div>
       ))}
     </div>
