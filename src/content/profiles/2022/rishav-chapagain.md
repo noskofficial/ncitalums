@@ -13,7 +13,7 @@ history:
   - year: '2022'
     position: 'Student'
     company: 'NCIT'
-    description: 'Learining Everything tech has to offer'
+    description: 'Learning Everything tech has to offer'
 
 social:
   linkedin: 'https://www.linkedin.com/in/rishav-chapagain'
