@@ -1,6 +1,6 @@
-# NCIT Alumni Portal
+# Open Alumn Portal
 
-Welcome to NCIT Alumni Portal.
+Welcome to Open Alumn Portal.
 
 <!-- cover photo here -->
 
@@ -50,7 +50,7 @@ cd [YOUR_REPO_NAME]
 Start by installing the project dependencies. Open your terminal, navigate to the project's root directory, and execute:
 
 ```bash
-npm install
+yarn install
 ```
 
 This command will install all the necessary dependencies defined in the `package.json` file.
@@ -75,7 +75,7 @@ All commands are run from the root of the project, from a terminal:
 Before deployment, you need to create a production build:
 
 ```bash
-npm run build
+yarn run build
 ```
 
 This creates a `dist/` directory with your built site (configurable via [outDir in Astro](https://docs.astro.build/en/reference/configuration-reference/#outdir)).
@@ -92,7 +92,7 @@ Click the button below to start deploying your project on Vercel:
 
 ## Project Structure
 
-NCIT Alumni Portal organizes modular components, content, and layouts to streamline development and content management.
+Open Alumn Portal organizes modular components, content, and layouts to streamline development and content management.
 
 ```bash
 .
