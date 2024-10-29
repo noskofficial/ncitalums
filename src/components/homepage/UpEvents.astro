@@ -1,21 +1,13 @@
 ---
+import { loadConfig } from "../../utils/loadconfig";
+import { EventData } from "../../utils/types";
 
-interface EventData {
-  id: string;
-  Title: string;
-  // would be better to have a description field
-  By: string[];
-  Date: string;
-  Time: string;
-  URL: string;
-  IMGURL: string; // this is the url to the section on html page so it cannot be used for the image
-  BannerURL: string; // there is no banner url but should be added for latest entries to the events.json
-  ProfileLink: string[];
-}
+const config = loadConfig();
+const upcoming_event_link = config.events.upcoming.link;
 
 let eventsData: EventData[];
 try {
-  const response = await fetch('https://raw.githubusercontent.com/noskofficial/noskofficial.github.io/main/events.json');
+  const response = await fetch(upcoming_event_link);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
@@ -30,8 +22,6 @@ try {
   console.error('Error fetching events:', error);
   eventsData = [];
 }
-// console.log('Events fetched:', eventsData);
-
 ---
 <section class="w-full flex-col justify-start items-center bg-gray-900 text-white py-16">
   <div class="text-center mb-12">
