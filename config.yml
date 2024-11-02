@@ -46,3 +46,8 @@ featured:
   -  "2021/satyarajawasth1" # slug
   blogs:
   -  "2017/ncit-alumni-reflections"
+
+events:
+  upcoming:
+    title: Upcoming Events
+    link: "https://raw.githubusercontent.com/noskofficial/noskofficial.github.io/main/events.json"
