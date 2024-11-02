@@ -4,7 +4,10 @@ import { AlumniProfileInfo } from '../utils/types';
 const { name, program, batch, image, slogan, tags, history, slug } = Astro.props as AlumniProfileInfo;
 ---
 
-<div class="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+<a 
+  class="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-2xl border border-transparent hover:border-blue-600 transition-all  duration-300 group"
+  href={`/profiles/${slug}`}
+  >
   {image?.url ? (
     <img
       src={image.url}
@@ -41,12 +44,11 @@ const { name, program, batch, image, slogan, tags, history, slug } = Astro.props
       </ul>
     </div>
     <div class="mt-6 text-center">
-      <a
-        href={`/profiles/${slug}`}
-        class="text-blue-500 hover:underline"
+      <div
+        class="text-blue-500 group-hover:text-blue-600 transition-all duration-300"
       >
-        See More
-      </a>
+        Click to See More
+      </div>
     </div>
   </div>
-</div>
+</a>
